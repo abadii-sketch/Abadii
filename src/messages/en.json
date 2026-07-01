@@ -1,0 +1,74 @@
+{
+  "nav": {
+    "forEmployers": "For employers",
+    "forWorkers": "For workers",
+    "signIn": "Sign in",
+    "signUp": "Get started",
+    "dashboard": "Dashboard"
+  },
+  "landing": {
+    "eyebrow": "Built for heat-exposed work",
+    "headline": "Heat is rising. Local crews can't work through it. Abadii connects you with labour that can.",
+    "sub": "Abadii matches employers in heatwave-affected regions with verified, heat-acclimated workers ready to relocate and work — with sponsorship support built in.",
+    "ctaEmployer": "Find workers",
+    "ctaWorker": "Create your profile",
+    "statHeat": "Peak summer surface temperatures in the Gulf now regularly pass 50°C — well past safe local labour thresholds.",
+    "howItWorksTitle": "How Abadii works",
+    "step1Title": "Workers build a profile",
+    "step1Body": "Trade, years of outdoor heat experience, languages, certifications, and a short video introduction.",
+    "step2Title": "Employers filter and shortlist",
+    "step2Body": "Search by trade, experience, availability and heat-work history. Shortlist candidates in one tap.",
+    "step3Title": "Interview, sponsor, onboard",
+    "step3Body": "Message directly, schedule interviews, and track visa and sponsorship paperwork in one place.",
+    "trustTitle": "Built on trust, not just listings",
+    "trustBody": "Every worker completes heat-safety training and ID verification before appearing in search. Every employer is license-verified before they can unlock contact details.",
+    "footerCta": "Ready to build your heat-ready crew?"
+  },
+  "auth": {
+    "signUpTitle": "Create your Abadii account",
+    "iAmA": "I am a...",
+    "worker": "Worker looking for work",
+    "employer": "Employer looking to hire",
+    "email": "Email",
+    "password": "Password",
+    "createAccount": "Create account",
+    "haveAccount": "Already have an account?",
+    "signInTitle": "Sign in to Abadii",
+    "signInCta": "Sign in",
+    "noAccount": "Don't have an account?"
+  },
+  "worker": {
+    "onboardingTitle": "Build your profile",
+    "onboardingSub": "This is what employers will see. Be specific — detail builds trust.",
+    "fullName": "Full name",
+    "countryOfOrigin": "Country of origin",
+    "currentCountry": "Current country",
+    "trade": "Trade",
+    "yearsHeatExp": "Years of outdoor heat-work experience",
+    "languages": "Languages spoken (comma separated)",
+    "bio": "Short bio",
+    "availableFrom": "Available from",
+    "expectedSalary": "Expected monthly salary (USD)",
+    "saveProfile": "Save profile",
+    "heatSafety": "Heat-safety training completed",
+    "medicalClearance": "Medical clearance on file"
+  },
+  "employer": {
+    "dashboardTitle": "Find your crew",
+    "filterTrade": "Trade",
+    "filterCountry": "Country of origin",
+    "filterMinExp": "Min. years heat experience",
+    "search": "Search",
+    "shortlist": "Shortlist",
+    "shortlisted": "Shortlisted",
+    "viewProfile": "View profile",
+    "noResults": "No workers match these filters yet.",
+    "planFree": "Free plan — limited profile views this month",
+    "upgrade": "Upgrade for full access"
+  },
+  "common": {
+    "years": "years",
+    "verified": "Verified",
+    "unverified": "Unverified"
+  }
+}

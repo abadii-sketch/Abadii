@@ -1,0 +1,144 @@
+// Abadii — Prisma schema
+// Run `npm run db:push` (quick start) or `npm run db:migrate` (versioned migrations)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  WORKER
+  EMPLOYER
+  ADMIN
+}
+
+enum EmployerPlan {
+  FREE
+  GROWTH
+  UNLIMITED
+}
+
+enum ShortlistStatus {
+  SHORTLISTED
+  CONTACTED
+  INTERVIEWING
+  OFFERED
+  HIRED
+  REJECTED
+}
+
+enum VerificationStatus {
+  UNVERIFIED
+  PENDING
+  VERIFIED
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  passwordHash  String
+  role          Role
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  workerProfile   WorkerProfile?
+  employerProfile EmployerProfile?
+}
+
+model Skill {
+  id      String  @id @default(cuid())
+  nameEn  String  @unique
+  nameAr  String
+  workers WorkerSkill[]
+}
+
+model WorkerSkill {
+  id        String @id @default(cuid())
+  workerId  String
+  skillId   String
+  yearsExp  Int    @default(0)
+
+  worker WorkerProfile @relation(fields: [workerId], references: [id], onDelete: Cascade)
+  skill  Skill         @relation(fields: [skillId], references: [id], onDelete: Cascade)
+
+  @@unique([workerId, skillId])
+}
+
+model WorkerProfile {
+  id                  String   @id @default(cuid())
+  userId              String   @unique
+  fullName            String
+  countryOfOrigin     String
+  currentCountry      String
+  dateOfBirth         DateTime?
+  photoUrl            String?
+  videoIntroUrl       String?
+  bioEn               String?
+  bioAr               String?
+  trade                String   // e.g. Construction, Agriculture, Landscaping, Logistics
+  yearsOutdoorHeatExp  Int      @default(0)
+  languages            String[] // ["Arabic","English","Swahili"]
+  availableFrom        DateTime?
+  expectedSalaryUsd    Int?
+  heatSafetyTrained     Boolean  @default(false)
+  medicalClearance      Boolean  @default(false)
+  verificationStatus    VerificationStatus @default(UNVERIFIED)
+  active                Boolean  @default(true)
+  createdAt             DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  skills    WorkerSkill[]
+  shortlists Shortlist[]
+  reviews   Review[]
+
+  @@index([trade])
+  @@index([countryOfOrigin])
+}
+
+model EmployerProfile {
+  id                 String       @id @default(cuid())
+  userId             String       @unique
+  companyName        String
+  country             String
+  industry             String?
+  companyLicenseUrl    String?
+  verificationStatus   VerificationStatus @default(UNVERIFIED)
+  plan                 EmployerPlan @default(FREE)
+  profileUnlocksUsed   Int          @default(0)
+  profileUnlocksReset  DateTime     @default(now())
+  createdAt            DateTime     @default(now())
+  updatedAt             DateTime    @updatedAt
+
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  shortlists Shortlist[]
+}
+
+model Shortlist {
+  id         String          @id @default(cuid())
+  employerId String
+  workerId   String
+  status     ShortlistStatus @default(SHORTLISTED)
+  note       String?
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+
+  employer EmployerProfile @relation(fields: [employerId], references: [id], onDelete: Cascade)
+  worker   WorkerProfile   @relation(fields: [workerId], references: [id], onDelete: Cascade)
+
+  @@unique([employerId, workerId])
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  workerId  String
+  rating    Int
+  comment   String?
+  createdAt DateTime @default(now())
+
+  worker WorkerProfile @relation(fields: [workerId], references: [id], onDelete: Cascade)
+}

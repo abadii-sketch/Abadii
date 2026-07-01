@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-arabic: 'Tajawal', sans-serif;
+}
+
+html[lang='ar'] body {
+  font-family: var(--font-arabic);
+}
+
+html[lang='en'] body {
+  font-family: var(--font-body);
+}
+
+body {
+  background-color: #F6EFE2;
+  color: #201C1A;
+}
+
+::selection {
+  background-color: #F2A93B;
+  color: #14192B;
+}
+
+@layer components {
+  .input {
+    @apply w-full rounded-lg border border-black/10 bg-white px-3.5 py-2.5 text-sm outline-none transition focus:border-ember;
+  }
+}
