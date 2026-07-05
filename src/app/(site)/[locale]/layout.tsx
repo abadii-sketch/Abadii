@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales } from '@/i18n';
 import Providers from '@/components/Providers';
@@ -25,6 +25,8 @@ export default async function LocaleLayout({
   params: { locale: string };
 }) {
   if (!locales.includes(locale as any)) notFound();
+
+  setRequestLocale(locale);
 
   const messages = await getMessages();
   const dir = locale === 'ar' ? 'rtl' : 'ltr';
