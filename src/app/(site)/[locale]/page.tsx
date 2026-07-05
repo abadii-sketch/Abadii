@@ -1,10 +1,10 @@
 import Link from 'next/link';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { LogoMark } from '@/components/Logo';
 
 export default async function LandingPage({ params: { locale } }: { params: { locale: string } }) {
+  setRequestLocale(locale);
   const t = await getTranslations('landing');
-
   return (
     <main>
       {/* Hero */}
